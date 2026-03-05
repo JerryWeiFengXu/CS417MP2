@@ -7,7 +7,7 @@ public class countDown : MonoBehaviour
     float time = 0;
     public float money = 0;
     public float moneyF = 0;
-    float rate = 3;
+    public float rate = 3;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,7 +27,7 @@ public class countDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        money = money + Time.deltaTime * 1;
+        money = money + Time.deltaTime * rate;
         moneyF = Mathf.Floor(money);
        
         timeText.text = moneyF.ToString();
