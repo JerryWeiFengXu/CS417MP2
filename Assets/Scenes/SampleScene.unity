@@ -2194,6 +2194,7 @@ GameObject:
   - component: {fileID: 773190232}
   - component: {fileID: 773190231}
   - component: {fileID: 773190230}
+  - component: {fileID: 773190238}
   m_Layer: 0
   m_Name: Generator
   m_TagString: Untagged
@@ -2213,7 +2214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a491a494734339948a1ecdc5d2aaa564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  generatorPrefab: {fileID: 0}
+  generatorPrefab: {fileID: 773190229}
   spawnPoint: {fileID: 0}
   cost: 20
   rateIncrease: 2
@@ -2428,6 +2429,18 @@ RectTransform:
   m_AnchoredPosition: {x: -6.1, y: 0.97}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &773190238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773190229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50b4a693af3ff047ba9669240e1dbb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
 --- !u!1 &796770625
 GameObject:
   m_ObjectHideFlags: 0
@@ -3011,7 +3024,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 959144483}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfe11a3c57758424684fd99ebb20aa4f, type: 3}
   m_Name: 
@@ -3661,6 +3674,7 @@ GameObject:
   - component: {fileID: 1403981491}
   - component: {fileID: 1403981490}
   - component: {fileID: 1403981493}
+  - component: {fileID: 1403981494}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -3744,6 +3758,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11500000, guid: 0ca3a33414df69442baaa5796aa7a4d5, type: 3}
+        m_TargetAssemblyTypeName: ButtonExample, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1403981491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3796,6 +3822,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ButtonExample
   score: {fileID: 716161360}
   incrementAmount: 1
+--- !u!114 &1403981494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403981488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca3a33414df69442baaa5796aa7a4d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Power
+  resourceSystem: {fileID: 959144487}
+  powerButton: {fileID: 1403981490}
+  buttonLabel: {fileID: 1566916721}
+  unlockMoneyRequired: 200
+  baseRate: 3
+  generatorContribution: 2
+  multiplier: 2
 --- !u!1001 &1406040649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4041,7 +4086,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -7, y: 4}
+  m_AnchoredPosition: {x: -6.97, y: 4}
   m_SizeDelta: {x: 982.5, y: 498}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1455703176
