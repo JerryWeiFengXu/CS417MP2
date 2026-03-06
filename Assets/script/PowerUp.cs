@@ -2,6 +2,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/*
+Power-up system.
+
+Unlock condition:
+- Player money >= 200
+
+Effect:
+- When activated, all generators produce resources at 2x rate.
+
+Notes:
+- Uses countDown.money to check resources
+- Counts generators using generatorTracker
+- Recalculates resource rate each frame
+*/
 public class Power : MonoBehaviour
 {
     public countDown resourceSystem;
