@@ -9,7 +9,7 @@ public class SecondSourceUnlock : MonoBehaviour
     public GameObject secondCube;
     public TMP_Text buttonLabel;
 
-    public float unlockCost = 100f;
+    public float unlockCost = 1000f;
     public float secondResource = 0f;
     public float secondRate = 1f;
 
@@ -23,6 +23,12 @@ public class SecondSourceUnlock : MonoBehaviour
 
     void Start()
     {
+        if (resourceSystem == null)
+        {
+            resourceSystem = FindObjectOfType<countDown>();
+            
+        }
+
         if (secondCube != null)
         {
             secondCube.SetActive(false);
@@ -45,8 +51,28 @@ public class SecondSourceUnlock : MonoBehaviour
 
     public void BuySecondSource()
     {
-        if (unlocked) return;
-        if (resourceSystem == null || secondCube == null) return;
+        Debug.Log("BuySecondSource clicked");
+
+        if (unlocked)
+        {
+            
+            return;
+        }
+
+        if (resourceSystem == null)
+        {
+            
+            return;
+        }
+
+        if (secondCube == null)
+        {
+            // Debug.Log("secondCube is NULL");
+            return;
+        }
+
+        Debug.Log("Current money = " + resourceSystem.money);
+        Debug.Log("Unlock cost = " + unlockCost);
 
         if (resourceSystem.money >= unlockCost)
         {
@@ -59,11 +85,11 @@ public class SecondSourceUnlock : MonoBehaviour
             UpdateCubeVisual();
             UpdateButtonState();
 
-            Debug.Log("Second source unlocked!");
+            // Debug.Log("Second source unlocked!");
         }
         else
         {
-            Debug.Log("Not enough money.");
+            // Debug.Log("Not enough money.");
         }
     }
 
@@ -79,41 +105,35 @@ public class SecondSourceUnlock : MonoBehaviour
     {
         if (unlockButton == null) return;
 
+        float currentMoney = (resourceSystem != null) ? resourceSystem.money : -1f;
+        bool canAfford = resourceSystem != null && resourceSystem.money >= unlockCost;
+
+        Debug.Log("Money = " + currentMoney + " | Cost = " + unlockCost + " | CanAfford = " + canAfford);
+
         if (unlocked)
         {
             unlockButton.interactable = false;
 
             if (unlockButton.image != null)
-            {
                 unlockButton.image.color = unlockedColor;
-            }
 
             if (buttonLabel != null)
-            {
                 buttonLabel.text = "Unlocked";
-            }
 
             return;
         }
 
-        bool canAfford = resourceSystem != null && resourceSystem.money >= unlockCost;
         unlockButton.interactable = canAfford;
 
         if (unlockButton.image != null)
-        {
             unlockButton.image.color = canAfford ? unlockedColor : lockedColor;
-        }
 
         if (buttonLabel != null)
         {
             if (canAfford)
-            {
                 buttonLabel.text = "Unlock Cube";
-            }
             else
-            {
                 buttonLabel.text = "Need " + unlockCost.ToString("0") + " Coins";
-            }
         }
     }
 }

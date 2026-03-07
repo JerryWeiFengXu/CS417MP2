@@ -1,46 +1,58 @@
 using UnityEngine;
-using UnityEngine.XR;
+using UnityEngine.UI;
+using TMPro;
 
-public class Generator : MonoBehaviour
+public class GeneratorButton : MonoBehaviour
 {
-    public GameObject generatorPrefab;   
-    public Transform spawnPoint;         
-    public float cost = 20f;
+    public countDown resourceSystem;
+    public Button generatorButton;
+    public TMP_Text buttonLabel;
+
+    public float cost = 100f;
     public float rateIncrease = 2f;
-    private countDown resourceSystem;
-    private bool wasPressedLastFrame = false;
 
     void Start()
     {
-        resourceSystem = FindObjectOfType<countDown>();
+        if (resourceSystem == null)
+            resourceSystem = FindObjectOfType<countDown>();
+
+        UpdateButtonVisual();
     }
 
     void Update()
     {
-        CheckButtonPress();
+        UpdateButtonVisual();
     }
 
-    void CheckButtonPress()
+    public void BuyGenerator()
     {
-        InputDevice rightHand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-
-        if (rightHand.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed))
+        if (resourceSystem != null && resourceSystem.money >= cost)
         {
-            if (pressed && !wasPressedLastFrame)
-            {
-                PlantGenerator();
-            }
-            wasPressedLastFrame = pressed;
+            resourceSystem.money -= cost;
+            resourceSystem.rate += 2;
+            resourceSystem.rateLove += 1;
+
+            UpdateButtonVisual();
         }
     }
 
-    void PlantGenerator()
+    void UpdateButtonVisual()
     {
+        if (resourceSystem == null || generatorButton == null) return;
+
         if (resourceSystem.money >= cost)
         {
-            resourceSystem.money -= cost;
-            resourceSystem.rate += rateIncrease;
-            Instantiate(generatorPrefab, spawnPoint.position, spawnPoint.rotation);
+            generatorButton.image.color = Color.white;
+
+            if (buttonLabel != null)
+                buttonLabel.text = "GENERATOR";
+        }
+        else
+        {
+            generatorButton.image.color = Color.gray;
+
+            if (buttonLabel != null)
+                buttonLabel.text = "GENERATOR";
         }
     }
 }
